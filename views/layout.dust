@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{title}</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script src="/js/vendor/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      {+content}
+        This is the base content.
+      {/content}
+    </div>
+  </body>
+</html>
