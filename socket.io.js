@@ -2,12 +2,10 @@ var io = require('socket.io'),
     ioListen;
 
 exports.init = function(server){
-  // console.log('io', io);
   ioListen = io.listen(server);
-  // console.log('ioListen', ioListen);
 
   ioListen.sockets.on('connection', function (socket) {
-    // socket.join('test');
+    socket.join('test');
     socket.emit('connection-on', { status: 'connection on' });
 
     socket.on('client-correspondence', function (data) {
