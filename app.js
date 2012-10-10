@@ -7,9 +7,6 @@ var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib');
 
-var server = require('./socket.io.js');
-server.init();
-
 var app = express();
 
 app.configure(function(){
@@ -46,7 +43,10 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 
-
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+var io = require('./socket.io.js');
+io.init(server);

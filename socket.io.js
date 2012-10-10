@@ -1,20 +1,25 @@
-var io = require('socket.io');
-var express= require('express')
-var app = express()
-  , server = require('http').createServer(app)
-  , io = io.listen(server);
+var io = require('socket.io'),
+    ioListen;
 
-exports.init = function(){
-  server.listen(3001);
-  io.sockets.on('connection', function (socket) {
-  socket.join('test');
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+exports.init = function(server){
+  // console.log('io', io);
+  ioListen = io.listen(server);
+  // console.log('ioListen', ioListen);
+
+  ioListen.sockets.on('connection', function (socket) {
+    // socket.join('test');
+    socket.emit('connection-on', { status: 'connection on' });
+
+    socket.on('client-correspondence', function (data) {
+      console.log('The client just sent us a nice package.', data);
+    });
+
+    socket.on('from-routes', function (data) {
+      console.log('Routes sent a postcard.', data);
     });
   });
 }
 
 exports.sio = function() {
-  return io;
+  return ioListen;
 }

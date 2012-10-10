@@ -13,6 +13,7 @@ exports.index = function(req, res){
   // // }
 
   sio.sockets.in('test').emit('news', { hello: 'CHARGE!' })
+  sio.sockets.emit('from-routes', { status: 'with love from routes/index.js' });
 
   // socket.on('my other event', function (data) {
   //   console.log(data);

@@ -13,7 +13,6 @@
     "klei-dust":"*",
     "nib": "*",
     "stylus": "*",
-    "socket.io" :"*",
-    "ntwitter": "*"
+    "socket.io" :"*"
   }
 }
